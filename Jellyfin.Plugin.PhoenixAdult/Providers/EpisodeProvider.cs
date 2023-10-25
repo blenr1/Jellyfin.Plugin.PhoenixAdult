@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using MediaBrowser.Controller.Entities;
-using MediaBrowser.Controller.Entities.Movies;
+using MediaBrowser.Controller.Entities.TV;
 using MediaBrowser.Controller.Providers;
 using MediaBrowser.Model.Providers;
 using PhoenixAdult.Helpers;
@@ -22,16 +22,16 @@ using System.Net.Http;
 
 namespace PhoenixAdult.Providers
 {
-    public class MovieProvider : IRemoteMetadataProvider<Movie, MovieInfo>
+    public class EpisodeProvider : IRemoteMetadataProvider<Episode, EpisodeInfo>
     {
-        public MovieProvider()
+        public EpisodeProvider()
         {
             Database.LoadAll();
         }
 
         public string Name => Plugin.Instance.Name;
 
-        public async Task<IEnumerable<RemoteSearchResult>> GetSearchResults(MovieInfo searchInfo, CancellationToken cancellationToken)
+        public async Task<IEnumerable<RemoteSearchResult>> GetSearchResults(EpisodeInfo searchInfo, CancellationToken cancellationToken)
         {
             var result = new List<RemoteSearchResult>();
 
@@ -40,6 +40,7 @@ namespace PhoenixAdult.Providers
                 return result;
             }
 
+            Logger.Info($"{searchInfo}");
             Logger.Info($"searchInfo.Name: {searchInfo.Name}");
 
             var title = string.Empty;
@@ -66,7 +67,9 @@ namespace PhoenixAdult.Providers
             if (site.siteNum == null)
             {
                 title = Helper.ReplaceAbbrieviation(searchInfo.Name);
+                Logger.Info($"Title: {title}");
                 site = Helper.GetSiteFromTitle(title);
+                Logger.Info($"Site: {site}");
             }
 
             if (site.siteNum == null)
@@ -183,12 +186,12 @@ namespace PhoenixAdult.Providers
             return result;
         }
 
-        public async Task<MetadataResult<Movie>> GetMetadata(MovieInfo info, CancellationToken cancellationToken)
+        public async Task<MetadataResult<Episode>> GetMetadata(EpisodeInfo info, CancellationToken cancellationToken)
         {
-            var result = new MetadataResult<Movie>
+            var result = new MetadataResult<Episode>
             {
                 HasMetadata = false,
-                Item = new Movie(),
+                Item = new Episode(),
             };
 
             if (info == null)
@@ -272,7 +275,7 @@ namespace PhoenixAdult.Providers
                 if (res != null)
                 {
                     result.HasMetadata = true;
-                    result.Item = MasterVideo.VideoToMovie((Video)res.Item);
+                    result.Item = MasterVideo.VideoToEpisode((Video)res.Item);
                     result.People = res.People;
                 }
 
@@ -317,11 +320,10 @@ namespace PhoenixAdult.Providers
                         result.Item.ProductionYear = result.Item.PremiereDate.Value.Year;
                     }
 
-                    if (result.People != null && result.People.Any())
-                    {
-                        result.People = Actors.Cleanup(result);
-                    }
-
+                    // if (result.People != null && result.People.Any())
+                    // {
+                    //     result.People = Actors.Cleanup(result);
+                    // }
                     if (result.Item.Genres != null && result.Item.Genres.Any())
                     {
                         result.Item.Genres = Genres.Cleanup(result.Item.Genres, result.Item.Name, result.People);
