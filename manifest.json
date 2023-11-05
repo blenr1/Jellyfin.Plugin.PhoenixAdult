@@ -8,6 +8,14 @@
         "overview": "Manage Your Adult Videos in Jellyfin/Emby",
         "versions": [
             {
+                "checksum": "E86093307B99310DBE92E5712F411492",
+                "changelog": "Converted R18 to R18.dev",
+                "targetAbi": "10.8.0.0",
+                "sourceUrl": "https://github.com/blenr1/Jellyfin.Plugin.PhoenixAdult/releases/download/2.8.1.0/Jellyfin.Plugin.PhoenixAdult.zip",
+                "timestamp": "2023-10-25 18:28:00",
+                "version": "2.8.1.0"
+            },
+            {
                 "checksum": "3FA0FE4F083ED6790F9845E191FE2CBE",
                 "changelog": "Added quick and dirty support for all the websites as series (The metadatas of the \"Movies\" are transfered to episodes)",
                 "targetAbi": "10.8.0.0",
