@@ -332,7 +332,7 @@
       "36": [ "Filthy Femdom" ],
     },
     "17": {
-      "0": [ "R18", "https://www.r18.com", "/common/search/searchword=" ],
+      "0": [ "R18Dev", "https://r18.dev", "/videos/vod/movies/detail/-/" ],
     },
     "18": {
       "0": [ "Femdom Empire", "https://femdomempire.com", "/tour/search.php?st=advanced&qany=" ],
@@ -759,7 +759,7 @@
       "0": [ "Manyvids", "https://www.manyvids.com", "/video/" ],
     },
     "51": {
-      "0": [ "Data18", "http://www.data18.com", "/search/?k=" ],
+      "0": [ "Data18", "http://www.data18.com", "/sys/live.php?live=1&key=" ],
     },
   },
   "SiteIDList": {
@@ -780,7 +780,7 @@
     "14": "NetworkGammaEnt",
     "15": "NetworkGammaEnt",
     "16": "NetworkKink",
-    "17": "NetworkR18",
+    "17": "NetworkR18Dev",
     "18": "NetworkFemdomEmpire",
     "19": "NetworkDogfart",
     "20": "NetworkPornPros",
@@ -1017,5 +1017,10 @@
     "^wy": "WebYoung",
     "^ztod": "ZeroTolerance",
     "^zzs": "ZZseries",
+  },
+  "Alias":
+  {
+    "DadCrush": [ "Dad Crush" ],
+    "SisLovesMe": [ "Sis Loves Me" ]
   }
 }

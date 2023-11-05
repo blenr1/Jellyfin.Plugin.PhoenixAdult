@@ -26,7 +26,7 @@ namespace PhoenixAdult.Sites
             }
 
             var provider = new MovieProvider();
-            var siteList = new List<string> { "JAVLibrary", "R18" };
+            var siteList = new List<string> { "R18Dev", "JAVLibrary" };
 
             foreach (var site in siteList)
             {
@@ -66,6 +66,7 @@ namespace PhoenixAdult.Sites
 
             var res = await provider.GetMetadata(info, cancellationToken).ConfigureAwait(false);
             result.Item = res.Item;
+            result.People = res.People;
 
             return result;
         }
